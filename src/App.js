@@ -7,22 +7,23 @@ import './App.css';
 class App extends Component {
 
   state = {
-    todosAmount: 0,
     todos: []
   }
   saveText(currentTodoText) {
-    console.log("saving to state: " + currentTodoText)
+    console.log("saving to state: " , this.state.todos)
     this.setState({
-      todos: [...this.state.todos, currentTodoText],
-      todosAmount: this.state.todosAmount + 1
+      todos: [...this.state.todos, {id: Date.now(), text: currentTodoText}]
     })
+  }
+  setFilteredTodos(filteredTodos) {
+    this.setState({todos: filteredTodos})
   }
   render() {
     return (
       <div>
-        <Title todosAmount={this.state.todosAmount} />
+        <Title todosAmount={this.state.todos.length} />
         <TextInput saveText={(text) => this.saveText(text)} />
-        <TodoList todoList={this.state.todos}/>
+        <TodoList setFilteredTodos={(filteredTodos) => this.setFilteredTodos(filteredTodos)} todoList={this.state.todos}/>
       </div>
     );
   }
