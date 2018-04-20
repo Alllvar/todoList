@@ -6,6 +6,7 @@ class TextInput extends Component {
       this.props.saveText(this.refs.textInput.value)
       this.refs.textInput.value = ""
     }
+    
     render() {
       return (
         <div>

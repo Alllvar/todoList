@@ -4,19 +4,24 @@ import './App.css';
 class TodoList extends Component {
   removeTodo(todoId) {
     const filteredTodos = this.props.todoList.filter(todo => todo.id !== todoId);
+
     this.props.setFilteredTodos(filteredTodos)
+  }
+  componentDidUpdate() {
+    console.log(this.props)
   }
 
     render() {
-      console.log(this.props.todoList)
       return (
         <div>
           <ul>
             {
               this.props.todoList.map(
                 (todo, index) => {
-                console.log("Rendering TODO: ", todo)
-                return(<li onClick={() => this.removeTodo(todo.id)} key={index}>{todo.text}</li>)
+                return(<li key={index}><input defaultValue={todo.text} />
+                
+                <button onClick={() => this.removeTodo(todo.id)}>X</button>
+                </li>)
               })
             }
           </ul>       

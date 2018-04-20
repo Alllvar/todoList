@@ -9,21 +9,23 @@ class App extends Component {
   state = {
     todos: []
   }
+
   saveText(currentTodoText) {
-    console.log("saving to state: " , this.state.todos)
     this.setState({
       todos: [...this.state.todos, {id: Date.now(), text: currentTodoText}]
     })
   }
+
   setFilteredTodos(filteredTodos) {
     this.setState({todos: filteredTodos})
   }
+
   render() {
     return (
       <div>
         <Title todosAmount={this.state.todos.length} />
-        <TextInput saveText={(text) => this.saveText(text)} />
-        <TodoList setFilteredTodos={(filteredTodos) => this.setFilteredTodos(filteredTodos)} todoList={this.state.todos}/>
+        <TextInput saveText={this.saveText.bind(this)} />
+        <TodoList setFilteredTodos={this.setFilteredTodos.bind(this)} todoList={this.state.todos}/>
       </div>
     );
   }
