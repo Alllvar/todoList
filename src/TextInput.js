@@ -10,7 +10,7 @@ class TextInput extends Component {
     render() {
       return (
         <div>
-          <input type="text" ref="textInput"/>
+          <input type="text" ref="textInput" />
           <button onClick={this.handleClick.bind(this)}>Enter</button>
         </div>
       )

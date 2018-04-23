@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import TodoItem from './TodoItem';
 
 class TodoList extends Component {
   removeTodo(todoId) {
@@ -7,10 +8,7 @@ class TodoList extends Component {
 
     this.props.setFilteredTodos(filteredTodos)
   }
-  componentDidUpdate() {
-    console.log(this.props)
-  }
-
+  
     render() {
       return (
         <div>
@@ -18,10 +16,9 @@ class TodoList extends Component {
             {
               this.props.todoList.map(
                 (todo, index) => {
-                return(<li key={index}><input defaultValue={todo.text} />
-                
-                <button onClick={() => this.removeTodo(todo.id)}>X</button>
-                </li>)
+                return(
+                  <TodoItem  key={index} removeTodo={this.removeTodo.bind(this)} todo={todo} updateTodo={this.props.updateTodo}/>
+                )
               })
             }
           </ul>       
