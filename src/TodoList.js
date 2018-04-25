@@ -3,8 +3,8 @@ import './App.css';
 import TodoItem from './TodoItem';
 
 class TodoList extends Component {
-  removeTodo(todoId) {
-    const filteredTodos = this.props.todoList.filter(todo => todo.id !== todoId);
+  removeTodo(removeTodoId) {
+    const filteredTodos = this.props.todoList.filter(todo => todo.id !== removeTodoId);
 
     this.props.setFilteredTodos(filteredTodos)
   }
@@ -17,7 +17,7 @@ class TodoList extends Component {
               this.props.todoList.map(
                 (todo, index) => {
                 return(
-                  <TodoItem  key={index} removeTodo={this.removeTodo.bind(this)} todo={todo} updateTodo={this.props.updateTodo}/>
+                  <TodoItem  key={todo.id} removeTodo={this.removeTodo.bind(this)} todo={todo} updateTodo={this.props.updateTodo}/>
                 )
               })
             }
